@@ -1,0 +1,24 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='profile',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=1200)),
+                ('empid', models.CharField(default=b'My EmpID', max_length=15)),
+                ('designation', models.CharField(default=b'My Designation', max_length=1200)),
+                ('location', models.CharField(default=b'My Location', max_length=1200)),
+                ('join_date', models.DateTimeField()),
+            ],
+        ),
+    ]

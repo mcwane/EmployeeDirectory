@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+<form method="post">
+    {% csrf_token %}
+    <label>Name: </label>
+    <input name="name" value="{{person.name}}" class="input-sm" rq>
+    <br>
+    <label>Phone: </label>
+    <input name="phone" value="{{person.phone}}" class="input-sm">
+    <br>
+    <label>Age: </label>
+    <input name="age" value="{{person.age}}" class="input-sm">
+    <br>
+    <input type="hidden" name="id" value="{{person.id}}">
+    <input type="submit" value="Submit" class="btn btn-default">
+</form>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+

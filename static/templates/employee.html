@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+ <p align="right"><a href="{% url 'insert' %}"><input type="button" value="AddEmployee" class="btn btn-default"></a></p>
+
+
+{% if people %}
+
+    <table class="table table-striped">
+    <thead>
+    <tr>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Age</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for person in people %}
+    <tr>
+    <td>{{person.name}}</td>
+    <td>{{person.phone}}</td>
+    <td>{{person.age}}</td>
+    <td><a href="/delete/{{person.id}}">Delete</a></td>
+    <td><a href="/edit/{{person.id}}">Edit</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+    <p align="center">No people in the database</p>
+    {% endif %}
+
+    {% endblock %}
