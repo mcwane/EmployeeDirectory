@@ -1,33 +1,180 @@
 {% extends 'base.html' %}
 {% block content %}
 
- <p align="right"><a href="{% url 'insert' %}"><input type="button" value="AddEmployee" class="btn btn-default"></a></p>
+ <!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+
+ <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+                            <ol class="breadcrumb">
+                                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                                <li><a href="#">Profile</a></li>
+                                <li class="active">Search Profiles</li>
+                            </ol>
+         <div class="row col-md-12 no-pad">
+                <!-- left column -->
+                <div class="col-md-8">
+                   <div class="col-md-12 no-pad">
+
+                           <h3 style="padding:0px; margin:0px;"> Employee Directory List</h3>
+
+                        <!--<div class="col-md-8">
+                            <form role="form" class="form-group" method="post">
+                             <select class="form-control" name="product" style="width:60%; display:inline-block">
+                                <option value="">Select a View Type</option>
+                                <option value="Design">Alphabets</option>
+                                <option value="IT">Department Wise</option>
+                                <option value="SS">Location Wise</option>
+                             </select>
+
+                             <input class="btn-sm btn-primary" type="submit" value="Go" />
+
+                            </form>
+
+                        </div>-->
 
 
-{% if people %}
+                    </div>
+                </div>
 
-    <table class="table table-striped">
-    <thead>
-    <tr>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Age</th>
-    <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for person in people %}
-    <tr>
-    <td>{{person.name}}</td>
-    <td>{{person.phone}}</td>
-    <td>{{person.age}}</td>
-    <td><a href="/delete/{{person.id}}">Delete</a></td>
-    <td><a href="/edit/{{person.id}}">Edit</a></td>
-    </tr>
-    {% endfor %}
-    </table>
-    {% else %}
-    <p align="center">No people in the database</p>
-    {% endif %}
 
-    {% endblock %}
+        </div> <br clear="all" />
+
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+            <div class="row">
+
+                 <div class="box">
+                       <!-- <div class="box-header">
+                            <h3 class="box-title">Production Department Employees Data List</h3>
+                        </div>--><!-- /.box-header -->
+
+                       <div class="box-body table-responsive">
+
+                                <a href="{% url 'insert' %}" style="float:right;"><input type="button" value="Add New Employee" class="btn-sm btn-primary" /> </a>
+
+
+                           <div class="nav-tabs-custom">
+                                <!-- Tabs within a box -->
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#product-dev" data-toggle="tab">Product Development</a></li>
+                                    <li><a href="#sales" data-toggle="tab">Design</a></li>
+                                    <!--  <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li> -->
+                                </ul>
+                                <div class="tab-content">
+
+                                    <br>
+                                    <div class="tab-pane active" id="product-dev" style="position: relative; min-height: 300px;">
+
+                                            {% if people %}
+                                                <table id="example1" class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Employee Id</th>
+                                                            <th>Department</th>
+                                                            <th>Designation</th>
+                                                            <th>Date of Birth</th>
+                                                            <th>Address</th>
+                                                            <th>Emergency Contact</th>
+                                                            <th>Blood Group</th>
+                                                            <th>Email</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                         {% for person in people %}
+                                                         <tr>
+                                                            <td>{{person.name}}</td>
+                                                            <td>{{person.Empid}}</td>
+
+                                                            <td>{{person.department}}</td>
+
+                                                            <td>{{person.designation}}</td>
+                                                            <td>{{person.dob}}</td>
+                                                            <td>{{person.Address}}</td>
+                                                            <td class="linebreak">{{person.EmgContact}}</td>
+                                                            <td>{{person.bloodgroup}}</td>
+                                                            <td class="linebreak"> {{person.email}} </td>
+
+                                                            <td>
+                                                                  {% if perms.emp.delete_persontest %}
+                                                                <a href="/delete/{{person.id}}">Delete</a> &nbsp;
+                                                                {% endif %}
+
+
+                                                                <a href="/edit/{{person.id}}">Edit</a></td>
+                                                         </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+
+                                                </table>
+                                    </div>
+
+                                    <div class="tab-pane" id="sales" style="position: relative; min-height: 300px;">
+                                        <br>
+										<div class="box-body">
+											<table class="table table-bordered table-hover">
+												<tr>
+													<th>ID</th>
+													<th>Name</th>
+													<th>Joining Date</th>
+													<th>Status</th>
+
+												</tr>
+												<tr>
+													<td>183</td>
+													<td>John Doe</td>
+													<td>11-7-2014</td>
+													<td><span class="label label-success">Active</span></td>
+
+												</tr>
+												<tr>
+													<td>219</td>
+													<td>Jane Doe</td>
+													<td>11-7-2014</td>
+													<td><span class="label label-warning">Busy</span></td>
+
+												</tr>
+												<tr>
+													<td>657</td>
+													<td>Bob Doe</td>
+													<td>11-7-2014</td>
+													<td><span class="label label-primary">Travel</span></td>
+
+												</tr>
+												<tr>
+													<td>175</td>
+													<td>Mike Doe</td>
+													<td>11-7-2014</td>
+													<td><span class="label label-danger">Inactive</span></td>
+
+												</tr>
+
+											</table>
+										</div>
+									</div>
+
+                                </div>
+                            </div><!-- /.nav-tabs-custom -->
+
+                       </div>
+
+              </div><!-- /.box -->
+            </div>
+
+             {% else %}
+
+             <p align="center">No people in the database</p>
+
+        {% endif %}
+
+    </section><!-- /.content -->
+
+ </aside><!-- /.right-side -->
+
+ {% endblock %}

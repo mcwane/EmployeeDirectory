@@ -48,9 +48,8 @@ INSTALLED_APPS = (
     'allauth.account',
     'stripe',
     'basicinfo',
-    'personal',
-    'crud',
     'emp',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -65,6 +64,9 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'EmpDir.urls'
 
+ROLEPERMISSIONS_MODULE = 'EmpDir.roles'
+
+
 WSGI_APPLICATION = 'EmpDir.wsgi.application'
 
 
@@ -74,7 +76,7 @@ WSGI_APPLICATION = 'EmpDir.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tryDjango',
+        'NAME': 'EmployeeDir',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '',

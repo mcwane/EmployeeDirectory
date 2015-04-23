@@ -1,24 +1,110 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
-<div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-<form method="post">
-    {% csrf_token %}
-    <label>Name: </label>
-    <input name="name" value="{{person.name}}" class="input-sm" rq>
-    <br>
-    <label>Phone: </label>
-    <input name="phone" value="{{person.phone}}" class="input-sm">
-    <br>
-    <label>Age: </label>
-    <input name="age" value="{{person.age}}" class="input-sm">
-    <br>
-    <input type="hidden" name="id" value="{{person.id}}">
-    <input type="submit" value="Submit" class="btn btn-default">
-</form>
-        </div>
-    </div>
+
+ <!-- Right side column. Contains the navbar and content of the page -->
+
+<aside class="right-side">
+
+ <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+
+            {% if person %}
+            Edit Profile
+            {% else %}
+            Add New Profiles
+           {% endif %}
+
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li class="active">Add New Profiles</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+            <div class="row">
+                 <div class="col-md-9">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+
+
+                            <form role="form" method="post">
+                                {% csrf_token %}
+                                <div class="box-body">
+                                        <div class="form-group">
+                                            <label>Name: </label>
+                                            <input class="form-control" placeholder="Enter Name of Employee" name="name" value="{{person.name}}"  />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Employee Id: </label>
+                                            <input class="form-control" placeholder="Name of Employee Id" name="empid" value="{{person.Empid}}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Designation: </label>
+                                            <input class="form-control" placeholder="Designation of Employee" name="designation" value="{{person.designation}}"  />
+                                         </div>
+                                        <div class="form-group">
+                                            <label>Department: </label>
+                                            <input class="form-control" placeholder="Department of Employee" name="department" value="{{person.department}}"  />
+                                         </div>
+                                        <div class="form-group">
+                                            <label>Date of Birth: </label>
+                                            <input class="form-control" name="dob" type="text" placeholder="Click to show datepicker"  id="dob_box" value="{{person.dob}}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Address: </label>
+                                            <input class="form-control" placeholder="Address of Employee" name="address" value="{{person.Address}}"  />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mobile: </label>
+                                            <input class="form-control" placeholder="Mobile Number of Employee" name="mobile" value="{{person.Mobile}}"  />
+                                         </div>
+                                        <div class="form-group">
+                                            <label>Emergency Contact: </label>
+                                            <input class="form-control" name="emgContact" placeholder="Enter Emergency Contact Details of Employee" value="{{person.EmgContact}}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Blood Group: </label>
+                                            <select class="form-control" name="bloodgroup" value="{{person.bloodgroup}}">
+                                                <option>--</option>
+                                                <option>A+</option>
+                                                <option>A-</option>
+                                                <option>A1+</option>
+                                                <option>A1-</option>
+                                                <option>B+</option>
+                                                <option>B-</option>
+                                                <option>O+</option>
+                                                <option>O-</option>
+                                            </select>
+                                         </div>
+                                        <div class="form-group">
+                                            <label>Email: </label>
+                                            <input class="form-control" placeholder="Email-id of Employee" name="email" value="{{person.email}}" />
+                                        </div>
+                                </div><!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <input type="hidden" name="id" class="btn btn-primary" value="{{person.id}}" />
+                                    <input type="submit" value="Submit" class="btn btn-primary" />
+                                </div>
+                            </form>
+
+                        </div>
+                </div>
+            </div>
+
+    </section><!-- /.content -->
+
+
+ </aside><!-- /.right-side -->
+
+
+
 {% endblock %}
 
 
